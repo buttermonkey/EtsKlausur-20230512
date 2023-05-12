@@ -21,7 +21,6 @@ public class Game {
 	}
 
 	public String tryNumber(String number) {
-		countAttempts++;
 		String answer = "";
 		for (int i = 0; i < currentNumber.length(); i++) {
 			if (number.length() <= i)
@@ -31,7 +30,10 @@ public class Game {
 			else
 				answer += "x";
 		}
-		String successIndicator = number.equals(currentNumber) ? ", SUCCESS!" : "";
+
+		countAttempts++;
+		isFinished = number.equals(currentNumber);
+		String successIndicator = isFinished ? ", SUCCESS!" : "";
 		return answer + " - after " + countAttempts + " attempt(s)" + successIndicator;
 	}
 
