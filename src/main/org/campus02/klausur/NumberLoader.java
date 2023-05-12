@@ -1,10 +1,7 @@
 package org.campus02.klausur;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class NumberLoader {
@@ -29,6 +26,10 @@ public class NumberLoader {
 			if (!number.isBlank())
 				numbers.add(number);
 		}
-		return new ArrayList<>(numbers);
+
+		// Sort list
+		List<String> result = new ArrayList<>(numbers);
+		result.sort(new StringLengthComparator());
+		return result;
 	}
 }
