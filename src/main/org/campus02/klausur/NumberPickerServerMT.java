@@ -4,13 +4,14 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-public class NumberPickerServer {
+public class NumberPickerServerMT {
 	public static void main(String[] args) {
-		try (ServerSocket listener = new ServerSocket(1111)) {
+		try (ServerSocket listener = new ServerSocket(2222)) {
 			while (true) {
-				try (Socket conn = listener.accept()) {
+				Socket conn = listener.accept();
+				try {
 					Runnable game = new GameClient(new Game(), conn);
-					game.run();
+					new Thread(game).start();
 				} catch (DataFileException e) {
 					e.printStackTrace();
 				}
