@@ -8,9 +8,10 @@ public class NumberPickerServer {
 	public static void main(String[] args) {
 		try (ServerSocket listener = new ServerSocket(1111)) {
 			while (true) {
-				try (Socket conn = listener.accept()) {
+				Socket conn = listener.accept();
+				try {
 					Runnable game = new GameClient(new Game(), conn);
-					game.run();
+					new Thread(game).start();
 				} catch (DataFileException e) {
 					e.printStackTrace();
 				}
