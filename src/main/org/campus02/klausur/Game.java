@@ -31,7 +31,8 @@ public class Game {
 			else
 				answer += "x";
 		}
-		return answer;
+		String successIndicator = number.equals(currentNumber) ? ", SUCCESS!" : "";
+		return answer + " - after " + countAttempts + " attempt(s)" + successIndicator;
 	}
 
 	public String getCurrentNumber() {
